@@ -71,6 +71,110 @@ body {
     color: var(--primary-color);
 }
 
+/* Dropdown Menu Styles */
+.dropdown {
+    position: relative;
+}
+
+.dropbtn {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+}
+
+.dropbtn i {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+.dropdown:hover .dropbtn i {
+    transform: rotate(180deg);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    min-width: 280px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    padding: 1.5rem;
+    z-index: 1001;
+    margin-top: 0.5rem;
+    opacity: 0;
+    animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-header {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.dropdown-subtitle {
+    font-size: 0.95rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+}
+
+.dropdown-content small {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    display: block;
+    margin-top: 0.3rem;
+}
+
+.dropdown-link {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    border-radius: 8px;
+    background: var(--bg-alt);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.dropdown-link:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateX(5px);
+}
+
+.dropdown-link i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-top: 0.2rem;
+}
+
+.dropdown-link:hover i {
+    color: white;
+}
+
+.dropdown-link small {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
@@ -497,6 +601,25 @@ section {
 
     .nav-menu.active {
         left: 0;
+    }
+
+    /* Mobile Dropdown Styles */
+    .dropdown-content {
+        position: static;
+        transform: none;
+        box-shadow: none;
+        border-top: 1px solid var(--border-color);
+        border-radius: 0;
+        margin-top: 0.5rem;
+        padding: 1rem;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: none;
+    }
+
+    .dropdown.active .dropdown-content {
+        display: block;
     }
 
     .hero-title {

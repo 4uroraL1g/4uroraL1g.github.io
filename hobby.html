@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobbies - Vo Minh Thien An</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hobby-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        .hobby-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .hobby-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+        .hobby-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+        .hobby-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+        .hobby-content {
+            padding: 2rem;
+        }
+        .hobby-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .hobby-content p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .hobby-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+        .hobby-stat {
+            text-align: center;
+        }
+        .hobby-stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        .hobby-stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Thien An</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Main <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="index.html#about"><i class="fas fa-user"></i> About</a>
+                        <a href="index.html#experience"><i class="fas fa-briefcase"></i> Experience</a>
+                        <a href="index.html#education"><i class="fas fa-graduation-cap"></i> Education</a>
+                        <a href="index.html#skills"><i class="fas fa-code"></i> Skills</a>
+                        <a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a>
+                    </div>
+                </li>
+                <li><a href="hobby.html" style="color: var(--primary-color);">Hobby</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hobby-hero">
+        <div class="container">
+            <h1 class="hero-title">My <span class="highlight">Adventures</span></h1>
+            <p class="hero-description">Exploring the world through trekking, hiking, and diving</p>
+        </div>
+    </section>
+
+    <!-- Hobbies Section -->
+    <section style="padding: 80px 0;">
+        <div class="container">
+            <h2 class="section-title">Outdoor Activities</h2>
+            
+            <div class="hobby-grid">
+                <!-- Trekking Card -->
+                <div class="hobby-card">
+                    <div class="hobby-image">
+                        <i class="fas fa-hiking"></i>
+                    </div>
+                    <div class="hobby-content">
+                        <h3><i class="fas fa-mountain"></i> Trekking</h3>
+                        <p>Passionate about multi-day trekking expeditions through challenging terrains. From mountain trails to forest paths, I love the journey as much as the destination.</p>
+                        <div class="hobby-stats">
+                            <div class="hobby-stat">
+                                <div class="hobby-stat-number">15+</div>
+                                <div class="hobby-stat-label">Trails</div>
+                            </div>
+                            <div class="hobby-stat">
+                                <div class="hobby-stat-number">500+</div>
+                                <div class="hobby-stat-label">km Trekked</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hiking Card -->
+                <div class="hobby-card">
+                    <div class="hobby-image">
+                        <i class="fas fa-shoe-prints"></i>
+                    </div>
+                    <div class="hobby-content">
+                        <h3><i class="fas fa-map-marked-alt"></i> Hiking</h3>
+                        <p>Enjoy day hikes and exploring local mountains and nature trails. Perfect for weekend adventures and discovering hidden gems in nature.</p>
+                        <div class="hobby-stats">
+                            <div class="hobby-stat">
+                                <div class="hobby-stat-number">30+</div>
+                                <div class="hobby-stat-label">Hikes</div>
+                            </div>
+                            <div class="hobby-stat">
+                                <div class="hobby-stat-number">2000m+</div>
+                                <div class="hobby-stat-label">Elevation</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diving Card -->
+                <div class="hobby-card">
+                    <div class="hobby-image">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="hobby-content">
+                        <h3><i class="fas fa-swimming-pool"></i> Diving</h3>
+                        <p>Exploring underwater worlds and marine life. From coral reefs to shipwrecks, diving opens up a whole new dimension of adventure and discovery.</p>
+                        <div class="hobby-stats">
+                            <div class="hobby-stat">
+                                <div class="hobby-stat-number">20+</div>
+                                <div class="hobby-stat-label">Dives</div>
+                            </div>
+                            <div class="hobby-stat">
+                                <div class="hobby-stat-number">30m</div>
+                                <div class="hobby-stat-label">Max Depth</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Travel Philosophy -->
+            <div style="max-width: 800px; margin: 4rem auto; text-align: center; background: var(--bg-alt); padding: 3rem; border-radius: 12px;">
+                <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">
+                    <i class="fas fa-quote-left"></i> Travel Philosophy
+                </h2>
+                <p style="font-size: 1.2rem; line-height: 1.8; color: var(--text-light);">
+                    "The best adventures are those that push your limits, connect you with nature, and create unforgettable memories. Whether on land or underwater, every journey teaches us something new about the world and ourselves."
+                </p>
+            </div>
+
+            <!-- Gallery Placeholder -->
+            <div style="text-align: center; margin-top: 4rem; padding: 3rem; background: white; border-radius: 12px; box-shadow: var(--shadow);">
+                <i class="fas fa-images" style="font-size: 4rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                <h3 style="color: var(--text-color); margin-bottom: 1rem;">Photo Gallery Coming Soon</h3>
+                <p style="color: var(--text-light);">Check back later for photos and stories from my adventures!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Vo Minh Thien An. Made with <i class="fas fa-heart"></i> and passion</p>
+            <p>Data Analyst | Healthcare Technology | Adventure Enthusiast</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

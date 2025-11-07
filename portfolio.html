@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Vo Minh Thien An</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .portfolio-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        /* Chatbot Styles */
+        .chatbot-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .chatbot-header i {
+            font-size: 1.5rem;
+        }
+        .chat-messages {
+            height: 500px;
+            overflow-y: auto;
+            padding: 2rem;
+            background: var(--bg-alt);
+        }
+        .message {
+            display: flex;
+            margin-bottom: 1.5rem;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .message.user {
+            justify-content: flex-end;
+        }
+        .message-content {
+            max-width: 70%;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            position: relative;
+        }
+        .message.bot .message-content {
+            background: white;
+            box-shadow: var(--shadow);
+        }
+        .message.user .message-content {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+        .message-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 1rem;
+            font-size: 1.2rem;
+        }
+        .message.bot .message-avatar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+        .message.user .message-avatar {
+            background: var(--bg-alt);
+            color: var(--primary-color);
+        }
+        .chat-input-container {
+            padding: 1.5rem;
+            background: white;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 1rem;
+        }
+        .chat-input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 24px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .send-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            font-size: 1rem;
+        }
+        .send-btn:hover {
+            transform: scale(1.05);
+        }
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .quick-questions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: white;
+            border-top: 1px solid var(--border-color);
+        }
+        .quick-question-btn {
+            padding: 0.5rem 1rem;
+            background: var(--bg-alt);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .quick-question-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        .typing-indicator {
+            display: none;
+            padding: 1rem;
+        }
+        .typing-indicator.active {
+            display: block;
+        }
+        .typing-dots {
+            display: inline-flex;
+            gap: 4px;
+        }
+        .typing-dots span {
+            width: 8px;
+            height: 8px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Thien An</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Main <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="index.html#about"><i class="fas fa-user"></i> About</a>
+                        <a href="index.html#experience"><i class="fas fa-briefcase"></i> Experience</a>
+                        <a href="index.html#education"><i class="fas fa-graduation-cap"></i> Education</a>
+                        <a href="index.html#skills"><i class="fas fa-code"></i> Skills</a>
+                        <a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a>
+                    </div>
+                </li>
+                <li><a href="hobby.html">Hobby</a></li>
+                <li><a href="portfolio.html" style="color: var(--primary-color);">Portfolio</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="portfolio-hero">
+        <div class="container">
+            <h1 class="hero-title">AI Portfolio <span class="highlight">Assistant</span></h1>
+            <p class="hero-description">Ask me anything about my experience, skills, and projects!</p>
+        </div>
+    </section>
+
+    <!-- Chatbot Section -->
+    <section style="padding: 80px 0;">
+        <div class="container">
+            <div class="chatbot-container">
+                <div class="chatbot-header">
+                    <i class="fas fa-robot"></i>
+                    <div>
+                        <h3>Portfolio AI Assistant</h3>
+                        <p style="font-size: 0.9rem; opacity: 0.9;">Ask about Thien An's experience, skills, and projects</p>
+                    </div>
+                </div>
+
+                <div class="chat-messages" id="chatMessages">
+                    <div class="message bot">
+                        <div class="message-avatar"><i class="fas fa-robot"></i></div>
+                        <div class="message-content">
+                            <p>👋 Hello! I'm Thien An's AI assistant. I can help you learn about:</p>
+                            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                                <li>Work experience and achievements</li>
+                                <li>Technical skills and expertise</li>
+                                <li>Education and certifications</li>
+                                <li>Projects and portfolio</li>
+                            </ul>
+                            <p style="margin-top: 0.5rem;">What would you like to know?</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-questions">
+                    <button class="quick-question-btn" onclick="askQuestion('What is your experience?')">
+                        <i class="fas fa-briefcase"></i> Experience
+                    </button>
+                    <button class="quick-question-btn" onclick="askQuestion('What are your skills?')">
+                        <i class="fas fa-code"></i> Skills
+                    </button>
+                    <button class="quick-question-btn" onclick="askQuestion('Tell me about your education')">
+                        <i class="fas fa-graduation-cap"></i> Education
+                    </button>
+                    <button class="quick-question-btn" onclick="askQuestion('What projects have you worked on?')">
+                        <i class="fas fa-project-diagram"></i> Projects
+                    </button>
+                    <button class="quick-question-btn" onclick="askQuestion('How can I contact you?')">
+                        <i class="fas fa-envelope"></i> Contact
+                    </button>
+                </div>
+
+                <div class="chat-input-container">
+                    <input type="text" class="chat-input" id="chatInput" placeholder="Ask me anything..." onkeypress="handleKeyPress(event)">
+                    <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+                        <i class="fas fa-paper-plane"></i> Send
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Vo Minh Thien An. Made with <i class="fas fa-heart"></i> and passion</p>
+            <p>Data Analyst | Healthcare Technology | Adventure Enthusiast</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Knowledge Base
+        const knowledgeBase = {
+            experience: {
+                keywords: ['experience', 'work', 'job', 'career', 'employment', 'worked'],
+                response: `I have valuable experience in healthcare technology and data analysis:
+
+📊 <strong>Data Analyst at Dedalus Vietnam</strong> (Nov 2024 - Present)
+• Optimizing product queries and database performance
+• Analyzing healthcare data for actionable insights
+• Managing and maintaining the company's SQL database
+
+🏥 <strong>Healthcare Technology Analyst at Abbott</strong> (Jan 2022 - Aug 2024)
+• Analyzed extensive data sets to improve patient outcomes
+• Developed automated reporting systems
+• Collaborated with cross-functional teams on healthcare solutions
+
+Each role has strengthened my analytical skills and deepened my understanding of healthcare technology.`
+            },
+            skills: {
+                keywords: ['skills', 'technical', 'programming', 'languages', 'tools', 'technology', 'can you'],
+                response: `I have a diverse technical skill set:
+
+💻 <strong>Programming Languages:</strong>
+• Python, SQL, R, JavaScript, VBA
+
+📊 <strong>Data Analysis & Visualization:</strong>
+• Power BI, Tableau, Excel (Advanced)
+• Statistical analysis and data modeling
+
+🗄️ <strong>Databases:</strong>
+• SQL Server, PostgreSQL, MySQL
+• Database optimization and management
+
+☁️ <strong>Cloud & Tools:</strong>
+• Git, Azure, AWS basics
+• Jira, Confluence
+
+I'm always learning and expanding my technical capabilities!`
+            },
+            education: {
+                keywords: ['education', 'degree', 'university', 'study', 'studied', 'school', 'academic'],
+                response: `🎓 <strong>Educational Background:</strong>
+
+<strong>Bachelor of Business (BBus) in Business Analytics</strong>
+RMIT University, Vietnam (2020 - 2024)
+• GPA: 3.4/4.0
+• Focused on data analytics, statistical modeling, and business intelligence
+
+<strong>High School Diploma</strong>
+Le Quy Don High School for the Gifted (2017 - 2020)
+
+I'm committed to continuous learning and staying updated with the latest industry trends and technologies.`
+            },
+            projects: {
+                keywords: ['project', 'portfolio', 'built', 'created', 'developed', 'work on'],
+                response: `🚀 <strong>Key Projects:</strong>
+
+<strong>Healthcare Data Analytics Platform</strong>
+• Built automated reporting system reducing manual work by 60%
+• Implemented predictive models for patient outcome analysis
+• Tools: Python, SQL, Power BI
+
+<strong>Database Optimization Initiative</strong>
+• Improved query performance by 40%
+• Streamlined data workflows for better efficiency
+• Tools: SQL Server, Performance Tuning
+
+<strong>Personal Portfolio Website</strong>
+• Responsive design with modern UI/UX
+• Interactive AI chatbot (you're using it now!)
+• Technologies: HTML, CSS, JavaScript
+
+I'm always working on new projects to enhance my skills!`
+            },
+            contact: {
+                keywords: ['contact', 'reach', 'email', 'phone', 'connect', 'linkedin', 'github'],
+                response: `📧 <strong>Let's Connect!</strong>
+
+<strong>Email:</strong> minhthienan.vo2002@gmail.com
+<strong>Phone:</strong> +84 397 507 555
+<strong>LinkedIn:</strong> linkedin.com/in/vo-minh-thien-an-88a917200
+<strong>GitHub:</strong> github.com/4uroraL1g
+
+I'm always open to discussing new opportunities, collaborations, or just connecting with fellow professionals. Feel free to reach out!`
+            },
+            hobbies: {
+                keywords: ['hobby', 'hobbies', 'interest', 'free time', 'trekking', 'hiking', 'diving', 'travel'],
+                response: `🏔️ <strong>Adventures & Hobbies:</strong>
+
+I'm passionate about outdoor activities:
+
+<strong>Trekking:</strong> Love multi-day expeditions through challenging terrains (500+ km trekked!)
+<strong>Hiking:</strong> Weekend warrior exploring local trails and mountains
+<strong>Diving:</strong> Exploring underwater worlds and marine life (20+ dives)
+
+These adventures teach me resilience, planning, and appreciation for nature - skills that translate well into my professional life!
+
+Check out my <a href="hobby.html" style="color: var(--primary-color);">Hobby page</a> for more details!`
+            },
+            about: {
+                keywords: ['about', 'who are you', 'tell me about yourself', 'yourself', 'background'],
+                response: `👋 <strong>About Me:</strong>
+
+I'm Vo Minh Thien An, a passionate Data Analyst with a focus on healthcare technology. I combine technical expertise with business acumen to deliver data-driven solutions.
+
+<strong>Professional Focus:</strong>
+• Healthcare data analytics
+• Database optimization
+• Business intelligence
+• Process automation
+
+<strong>Personal Interests:</strong>
+• Outdoor adventures (trekking, hiking, diving)
+• Continuous learning
+• Technology innovation
+
+I believe in using data to make meaningful impacts, especially in healthcare where insights can improve patient outcomes and operational efficiency.`
+            },
+            default: {
+                response: `I'm not sure about that specific question, but I'd be happy to tell you about:
+
+• My work experience and achievements
+• Technical skills and expertise  
+• Educational background
+• Projects I've worked on
+• How to contact me
+• My hobbies and interests
+
+What would you like to know more about?`
+            }
+        };
+
+        function addMessage(content, isUser = false) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = 'message-avatar';
+            avatar.innerHTML = `<i class="fas fa-${isUser ? 'user' : 'robot'}"></i>`;
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.innerHTML = `<p>${content}</p>`;
+            
+            if (isUser) {
+                messageDiv.appendChild(contentDiv);
+                messageDiv.appendChild(avatar);
+            } else {
+                messageDiv.appendChild(avatar);
+                messageDiv.appendChild(contentDiv);
+            }
+            
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function getBotResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            
+            for (const [key, data] of Object.entries(knowledgeBase)) {
+                if (key !== 'default' && data.keywords.some(keyword => lowerMessage.includes(keyword))) {
+                    return data.response;
+                }
+            }
+            
+            return knowledgeBase.default.response;
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message
+            addMessage(message, true);
+            input.value = '';
+            
+            // Simulate typing delay
+            const sendBtn = document.getElementById('sendBtn');
+            sendBtn.disabled = true;
+            
+            setTimeout(() => {
+                const response = getBotResponse(message);
+                addMessage(response, false);
+                sendBtn.disabled = false;
+            }, 800);
+        }
+
+        function askQuestion(question) {
+            document.getElementById('chatInput').value = question;
+            sendMessage();
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+    </script>
+</body>
+</html>
