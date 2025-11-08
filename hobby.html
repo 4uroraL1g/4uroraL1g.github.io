@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Vo Minh Thien An's outdoor adventures - trekking, hiking, and diving experiences with stunning photography.">
+    <meta name="keywords" content="Hobbies, Adventure, Trekking, Hiking, Diving, Outdoor Activities, Photography">
+    <meta name="author" content="Vo Minh Thien An">
     <title>Hobbies - Vo Minh Thien An</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -73,6 +76,40 @@
             font-size: 0.9rem;
             color: var(--text-light);
         }
+        
+        /* Photo Gallery Styles */
+        .photo-gallery {
+            margin-top: 4rem;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            aspect-ratio: 1;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -84,6 +121,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="portfolio.html">Portfolio</a></li>
                 <li><a href="hobby.html" style="color: var(--primary-color);">Hobby</a></li>
+                <li><a href="blog.html">Blog</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -197,11 +235,22 @@
                 </p>
             </div>
 
-            <!-- Gallery Placeholder -->
-            <div style="text-align: center; margin-top: 4rem; padding: 3rem; background: white; border-radius: 12px; box-shadow: var(--shadow);">
-                <i class="fas fa-images" style="font-size: 4rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
-                <h3 style="color: var(--text-color); margin-bottom: 1rem;">Photo Gallery Coming Soon</h3>
-                <p style="color: var(--text-light);">Check back later for photos and stories from my adventures!</p>
+            <!-- Photo Gallery Preview -->
+            <div class="photo-gallery">
+                <h2 class="section-title">Adventure Gallery</h2>
+                <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">
+                    Moments captured from my outdoor adventures
+                </p>
+                
+                <div class="gallery-grid" id="galleryGrid">
+                    <!-- Random 8 images will be loaded dynamically -->
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="gallery.html" style="padding: 1rem 2rem; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); color: white; text-decoration: none; border-radius: 8px; font-weight: 600; display: inline-flex; align-items: center; gap: 0.5rem; transition: all 0.3s ease; box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);">
+                        <i class="fas fa-images"></i> View All Photos
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -215,5 +264,86 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Photo Gallery - Show only 6 random images
+        const photos = [
+            '0BD42C00-A98B-46F9-8B4A-91740F438C50.png',
+            '0FDE1B7B-EDC9-4CB8-90B4-94F0CF1C88A5.png',
+            '20250929-DSCF0031.jpg',
+            '20250929-DSCF0032.jpg',
+            '20250929-DSCF0033.jpg',
+            '20250929-DSCF0038.jpg',
+            '20250929-DSCF0039.jpg',
+            '20250929-DSCF0041.jpg',
+            '20250929-DSCF0050.jpg',
+            '20250929-DSCF0052.jpg',
+            '20250929-DSCF0058.jpg',
+            '20250929-DSCF0059.jpg',
+            '20250929-DSCF0070.jpg',
+            '20250929-DSCF0075.jpg',
+            '20250929-DSCF0079.jpg',
+            '20250929-DSCF0088.jpg',
+            '20250929-DSCF0098.jpg',
+            '20250929-DSCF0104.jpg',
+            '20250929-DSCF0109.jpg',
+            '2574C398-E190-4F47-95D7-B2D91BBD6CF9.png',
+            '39EFB4ED-A55F-486F-BA95-998F35059785.png',
+            '61431FDB-8E73-4837-9A49-B0F50A7C79A9.png',
+            '6151593C-B824-49E3-891F-C73672034AE9.png',
+            '79EDED28-817D-4C6B-9E6F-9035E2270F03.png',
+            '7B88B787-FB52-4868-993B-A82A9A19D671.png',
+            '80245AD7-9D0D-4E1F-A5FD-5C79C2266CAF.png',
+            '85E90253-D853-476A-B553-27142ACCAC3F.png',
+            '8A7BD9F5-50AA-4A1B-ACBD-7CC70848ED33.png',
+            '8B7A41BE-9FE9-4758-87D8-209CAE43BD5D.png',
+            '8F250C51-EFB5-4C6F-BD38-21B291F11982.png',
+            '997FD61F-0572-4D96-8FF3-BCED041FBDF0.png',
+            'B1D86F44-3188-47EF-A351-B98A306ED978.png',
+            'BFDD1FF4-EA61-43ED-BB89-FE318FC9CBDA.png',
+            'C05AC321-7A24-48C0-A593-B6854719DB74.png',
+            'C1A62D0D-601B-4C68-8C0F-8D640BBE4D8F.png',
+            'C2AD2D70-17F1-421D-BB57-C24513A53DC1.png',
+            'C2EC2379-6F85-4E58-A729-95358A754524.png',
+            'C703C3B7-1F87-431F-B1B1-8A5407E58240.png',
+            'CF7DF136-F23D-4F88-9699-D5ECAAD2B439.png',
+            'D010D564-5FE2-403C-BDFD-7F9624654EA2.png',
+            'D04FB232-C236-4C38-B939-C9811364D63A.png'
+        ];
+
+        // Get 6 random photos (2 rows of 3)
+        function getRandomPhotos(arr, count) {
+            const shuffled = [...arr].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        // Load gallery preview (6 random images)
+        function loadGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            const randomPhotos = getRandomPhotos(photos, 6);
+            
+            randomPhotos.forEach((photo) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                
+                const link = document.createElement('a');
+                link.href = 'gallery.html';
+                link.style.display = 'block';
+                link.style.width = '100%';
+                link.style.height = '100%';
+                
+                const img = document.createElement('img');
+                img.src = `Hobby_Photo/${photo}`;
+                img.alt = 'Adventure photo preview';
+                img.loading = 'lazy';
+                
+                link.appendChild(img);
+                galleryItem.appendChild(link);
+                galleryGrid.appendChild(galleryItem);
+            });
+        }
+
+        // Load gallery on page load
+        window.addEventListener('DOMContentLoaded', loadGallery);
+    </script>
 </body>
 </html>

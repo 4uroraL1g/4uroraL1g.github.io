@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Full photo gallery of Vo Minh Thien An's outdoor adventures - trekking, hiking, and diving photography collection.">
+    <meta name="keywords" content="Photo Gallery, Adventure Photography, Trekking Photos, Hiking Pictures, Diving Images">
+    <meta name="author" content="Vo Minh Thien An">
+    <title>Photo Gallery - Vo Minh Thien An</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .gallery-hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .gallery-section {
+            padding: 80px 0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            aspect-ratio: 1;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            z-index: 10001;
+        }
+        
+        .lightbox-close:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+            z-index: 10001;
+        }
+        
+        .lightbox-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .lightbox-prev {
+            left: 20px;
+        }
+        
+        .lightbox-next {
+            right: 20px;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 600;
+            transition: gap 0.3s ease;
+        }
+        
+        .back-link:hover {
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Thien An</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="hobby.html" style="color: var(--primary-color);">Hobby</a></li>
+                <li><a href="blog.html">Blog</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <!-- Scrolling Ticker -->
+        <div class="ticker-wrap">
+            <div class="ticker">
+                <a href="index.html#about" class="ticker-item"><i class="fas fa-user"></i> About</a>
+                <a href="index.html#experience" class="ticker-item"><i class="fas fa-briefcase"></i> Experience</a>
+                <a href="index.html#education" class="ticker-item"><i class="fas fa-graduation-cap"></i> Education</a>
+                <a href="index.html#skills" class="ticker-item"><i class="fas fa-code"></i> Skills</a>
+                <a href="index.html#contact" class="ticker-item"><i class="fas fa-envelope"></i> Contact</a>
+                <!-- Duplicate for seamless loop -->
+                <a href="index.html#about" class="ticker-item"><i class="fas fa-user"></i> About</a>
+                <a href="index.html#experience" class="ticker-item"><i class="fas fa-briefcase"></i> Experience</a>
+                <a href="index.html#education" class="ticker-item"><i class="fas fa-graduation-cap"></i> Education</a>
+                <a href="index.html#skills" class="ticker-item"><i class="fas fa-code"></i> Skills</a>
+                <a href="index.html#contact" class="ticker-item"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gallery-hero">
+        <div class="container">
+            <h1 class="hero-title">Adventure <span class="highlight">Gallery</span></h1>
+            <p class="hero-description">All moments captured from my outdoor adventures</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section">
+        <div class="container">
+            <a href="hobby.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Hobbies
+            </a>
+
+            <h2 class="section-title">Full Photo Gallery</h2>
+            <p style="text-align: center; color: var(--text-light); margin-bottom: 2rem;">
+                Click on any photo to view in full size
+            </p>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- All images will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-close" onclick="closeLightbox()">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="lightbox-nav lightbox-prev" onclick="changeLightboxImage(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="lightbox-content">
+            <img id="lightboxImage" src="" alt="Adventure Photo">
+        </div>
+        <div class="lightbox-nav lightbox-next" onclick="changeLightboxImage(1)">
+            <i class="fas fa-chevron-right"></i>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Vo Minh Thien An. Made with <i class="fas fa-heart"></i> and passion</p>
+            <p>Data Analyst | Healthcare Technology | Adventure Enthusiast</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // All photos
+        const photos = [
+            '0BD42C00-A98B-46F9-8B4A-91740F438C50.png',
+            '0FDE1B7B-EDC9-4CB8-90B4-94F0CF1C88A5.png',
+            '20250929-DSCF0031.jpg',
+            '20250929-DSCF0032.jpg',
+            '20250929-DSCF0033.jpg',
+            '20250929-DSCF0038.jpg',
+            '20250929-DSCF0039.jpg',
+            '20250929-DSCF0041.jpg',
+            '20250929-DSCF0050.jpg',
+            '20250929-DSCF0052.jpg',
+            '20250929-DSCF0058.jpg',
+            '20250929-DSCF0059.jpg',
+            '20250929-DSCF0070.jpg',
+            '20250929-DSCF0075.jpg',
+            '20250929-DSCF0079.jpg',
+            '20250929-DSCF0088.jpg',
+            '20250929-DSCF0098.jpg',
+            '20250929-DSCF0104.jpg',
+            '20250929-DSCF0109.jpg',
+            '2574C398-E190-4F47-95D7-B2D91BBD6CF9.png',
+            '39EFB4ED-A55F-486F-BA95-998F35059785.png',
+            '61431FDB-8E73-4837-9A49-B0F50A7C79A9.png',
+            '6151593C-B824-49E3-891F-C73672034AE9.png',
+            '79EDED28-817D-4C6B-9E6F-9035E2270F03.png',
+            '7B88B787-FB52-4868-993B-A82A9A19D671.png',
+            '80245AD7-9D0D-4E1F-A5FD-5C79C2266CAF.png',
+            '85E90253-D853-476A-B553-27142ACCAC3F.png',
+            '8A7BD9F5-50AA-4A1B-ACBD-7CC70848ED33.png',
+            '8B7A41BE-9FE9-4758-87D8-209CAE43BD5D.png',
+            '8F250C51-EFB5-4C6F-BD38-21B291F11982.png',
+            '997FD61F-0572-4D96-8FF3-BCED041FBDF0.png',
+            'B1D86F44-3188-47EF-A351-B98A306ED978.png',
+            'BFDD1FF4-EA61-43ED-BB89-FE318FC9CBDA.png',
+            'C05AC321-7A24-48C0-A593-B6854719DB74.png',
+            'C1A62D0D-601B-4C68-8C0F-8D640BBE4D8F.png',
+            'C2AD2D70-17F1-421D-BB57-C24513A53DC1.png',
+            'C2EC2379-6F85-4E58-A729-95358A754524.png',
+            'C703C3B7-1F87-431F-B1B1-8A5407E58240.png',
+            'CF7DF136-F23D-4F88-9699-D5ECAAD2B439.png',
+            'D010D564-5FE2-403C-BDFD-7F9624654EA2.png',
+            'D04FB232-C236-4C38-B939-C9811364D63A.png'
+        ];
+
+        let currentImageIndex = 0;
+
+        // Load all gallery images
+        function loadGallery() {
+            const galleryGrid = document.getElementById('galleryGrid');
+            photos.forEach((photo, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.onclick = () => openLightbox(index);
+                
+                const img = document.createElement('img');
+                img.src = `Hobby_Photo/${photo}`;
+                img.alt = `Adventure photo ${index + 1}`;
+                img.loading = 'lazy';
+                
+                galleryItem.appendChild(img);
+                galleryGrid.appendChild(galleryItem);
+            });
+        }
+
+        // Lightbox functions
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            lightboxImage.src = `Hobby_Photo/${photos[index]}`;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function changeLightboxImage(direction) {
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) {
+                currentImageIndex = photos.length - 1;
+            } else if (currentImageIndex >= photos.length) {
+                currentImageIndex = 0;
+            }
+            const lightboxImage = document.getElementById('lightboxImage');
+            lightboxImage.src = `Hobby_Photo/${photos[currentImageIndex]}`;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    changeLightboxImage(-1);
+                } else if (e.key === 'ArrowRight') {
+                    changeLightboxImage(1);
+                }
+            }
+        });
+
+        // Close lightbox on background click
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        });
+
+        // Load gallery on page load
+        window.addEventListener('DOMContentLoaded', loadGallery);
+    </script>
+</body>
+</html>

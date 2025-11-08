@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Thoughts and insights from Vo Minh Thien An on data analytics, healthcare technology, AI, and career development.">
+    <meta name="keywords" content="Blog, Insights, Data Analytics, Healthcare Technology, AI, Career Development, Tech Thoughts">
+    <meta name="author" content="Vo Minh Thien An">
+    <title>Blog & Insights - Vo Minh Thien An</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .blog-hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .blog-section {
+            padding: 80px 0;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .blog-header {
+            padding: 2rem;
+            background: var(--bg-alt);
+        }
+        
+        .blog-date {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .blog-title {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .blog-tag {
+            background: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+        }
+        
+        .blog-content {
+            padding: 2rem;
+            flex: 1;
+        }
+        
+        .blog-excerpt {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+        
+        .read-more {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+        
+        .read-more:hover {
+            gap: 1rem;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--bg-alt);
+            border-radius: 16px;
+            margin-top: 3rem;
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .empty-state h3 {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+        
+        .empty-state p {
+            color: var(--text-light);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">Thien An</div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="hobby.html">Hobby</a></li>
+                <li><a href="blog.html" style="color: var(--primary-color);">Blog</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <!-- Scrolling Ticker -->
+        <div class="ticker-wrap">
+            <div class="ticker">
+                <a href="index.html#about" class="ticker-item"><i class="fas fa-user"></i> About</a>
+                <a href="index.html#experience" class="ticker-item"><i class="fas fa-briefcase"></i> Experience</a>
+                <a href="index.html#education" class="ticker-item"><i class="fas fa-graduation-cap"></i> Education</a>
+                <a href="index.html#skills" class="ticker-item"><i class="fas fa-code"></i> Skills</a>
+                <a href="index.html#contact" class="ticker-item"><i class="fas fa-envelope"></i> Contact</a>
+                <!-- Duplicate for seamless loop -->
+                <a href="index.html#about" class="ticker-item"><i class="fas fa-user"></i> About</a>
+                <a href="index.html#experience" class="ticker-item"><i class="fas fa-briefcase"></i> Experience</a>
+                <a href="index.html#education" class="ticker-item"><i class="fas fa-graduation-cap"></i> Education</a>
+                <a href="index.html#skills" class="ticker-item"><i class="fas fa-code"></i> Skills</a>
+                <a href="index.html#contact" class="ticker-item"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="blog-hero">
+        <div class="container">
+            <h1 class="hero-title">Blog & <span class="highlight">Insights</span></h1>
+            <p class="hero-description">Thoughts on data analytics, healthcare technology, and career development</p>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="container">
+            <h2 class="section-title">Latest Posts</h2>
+            
+            <!-- Blog posts will be added here -->
+            <div class="blog-grid" id="blogGrid">
+                <!-- Empty state for now -->
+            </div>
+            
+            <div class="empty-state">
+                <i class="fas fa-pen-fancy"></i>
+                <h3>Coming Soon</h3>
+                <p>I'm working on sharing my thoughts and experiences on data analytics, healthcare technology, AI, and my professional journey. Check back soon for insights and stories!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Vo Minh Thien An. Made with <i class="fas fa-heart"></i> and passion</p>
+            <p>Data Analyst | Healthcare Technology | Adventure Enthusiast</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Blog posts data - You can add your posts here
+        const blogPosts = [
+            // Example structure (uncomment and fill when ready):
+            // {
+            //     id: 1,
+            //     title: "My Journey into Data Analytics",
+            //     date: "January 15, 2025",
+            //     tags: ["Career", "Data Analytics"],
+            //     excerpt: "How I transitioned from IT to becoming a data analyst and what I learned along the way...",
+            //     content: "blog/post-1.html"
+            // },
+        ];
+
+        // Load blog posts
+        function loadBlogPosts() {
+            const blogGrid = document.getElementById('blogGrid');
+            const emptyState = document.querySelector('.empty-state');
+            
+            if (blogPosts.length === 0) {
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            
+            blogPosts.forEach(post => {
+                const blogCard = document.createElement('div');
+                blogCard.className = 'blog-card';
+                
+                blogCard.innerHTML = `
+                    <div class="blog-header">
+                        <div class="blog-date"><i class="far fa-calendar"></i> ${post.date}</div>
+                        <h3 class="blog-title">${post.title}</h3>
+                        <div class="blog-tags">
+                            ${post.tags.map(tag => `<span class="blog-tag">${tag}</span>`).join('')}
+                        </div>
+                    </div>
+                    <div class="blog-content">
+                        <p class="blog-excerpt">${post.excerpt}</p>
+                        <a href="${post.content}" class="read-more">
+                            Read More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                `;
+                
+                blogGrid.appendChild(blogCard);
+            });
+        }
+
+        // Load posts on page load
+        window.addEventListener('DOMContentLoaded', loadBlogPosts);
+    </script>
+</body>
+</html>
