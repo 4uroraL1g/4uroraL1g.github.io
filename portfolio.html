@@ -31,6 +31,8 @@
             overflow: hidden;
             box-shadow: var(--shadow-lg);
             transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
         
         .project-card:hover {
@@ -50,6 +52,9 @@
         
         .project-content {
             padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
         
         .project-content h3 {
@@ -77,12 +82,13 @@
             color: var(--text-light);
             line-height: 1.6;
             margin-bottom: 1rem;
+            flex: 1;
         }
         
         .project-links {
             display: flex;
             gap: 1rem;
-            margin-top: 1.5rem;
+            margin-top: auto;
         }
         
         .project-link {
@@ -99,6 +105,7 @@
         .project-link.primary {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
         }
         
         .project-link.secondary {
@@ -108,7 +115,7 @@
         
         .project-link:hover {
             transform: translateY(-2px);
-            box-shadow: var(--shadow);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
         }
         
         /* Floating Chatbot Styles */
@@ -405,13 +412,13 @@
                     </div>
                 </div>
 
-                <!-- Data Science Project 1 -->
+                <!-- Practical Data Science -->
                 <div class="project-card">
                     <div class="project-image">
                         <i class="fas fa-chart-line"></i>
                     </div>
                     <div class="project-content">
-                        <h3>Data Science Project 1</h3>
+                        <h3>Practical Data Science</h3>
                         <div class="project-tags">
                             <span class="project-tag">Data Science</span>
                             <span class="project-tag">Python</span>
@@ -419,34 +426,10 @@
                             <span class="project-tag">Analytics</span>
                         </div>
                         <p class="project-description">
-                            Practical data science project involving data exploration, cleaning, and analysis using Python and Jupyter notebooks.
+                            Comprehensive data science course involving data exploration, statistical analysis, and modeling using Python and Jupyter notebooks.
                         </p>
                         <div class="project-links">
-                            <a href="portfolio/data-science-1.html" class="project-link primary">
-                                <i class="fas fa-arrow-right"></i> View Details
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Data Science Project 2 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3>Data Science Project 2</h3>
-                        <div class="project-tags">
-                            <span class="project-tag">Data Science</span>
-                            <span class="project-tag">Python</span>
-                            <span class="project-tag">Analytics</span>
-                            <span class="project-tag">Visualization</span>
-                        </div>
-                        <p class="project-description">
-                            Advanced data science project focusing on practical data analysis techniques, statistical modeling, and data-driven insights.
-                        </p>
-                        <div class="project-links">
-                            <a href="portfolio/data-science-2.html" class="project-link primary">
+                            <a href="portfolio/data-science.html" class="project-link primary">
                                 <i class="fas fa-arrow-right"></i> View Details
                             </a>
                         </div>
@@ -516,6 +499,54 @@
                         </p>
                         <div class="project-links">
                             <a href="portfolio/user-centered-design.html" class="project-link primary">
+                                <i class="fas fa-arrow-right"></i> View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business Statistics MBA -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Business Statistics MBA</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">MBA</span>
+                            <span class="project-tag">Business Statistics</span>
+                            <span class="project-tag">Strategic Analysis</span>
+                            <span class="project-tag">Healthcare Analytics</span>
+                        </div>
+                        <p class="project-description">
+                            MBA-level business statistics projects applying advanced statistical methods to strategic business decisions and healthcare analytics.
+                        </p>
+                        <div class="project-links">
+                            <a href="portfolio/business-statistics-mba.html" class="project-link primary">
+                                <i class="fas fa-arrow-right"></i> View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Introduction to US Healthcare MBA -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Introduction to US Healthcare MBA</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">MBA</span>
+                            <span class="project-tag">Healthcare</span>
+                            <span class="project-tag">Digital Health</span>
+                            <span class="project-tag">Policy Analysis</span>
+                        </div>
+                        <p class="project-description">
+                            MBA healthcare management projects exploring digital health technologies, policy analysis, and organizational innovation.
+                        </p>
+                        <div class="project-links">
+                            <a href="portfolio/intro-us-healthcare-mba.html" class="project-link primary">
                                 <i class="fas fa-arrow-right"></i> View Details
                             </a>
                         </div>
@@ -597,62 +628,90 @@
         const knowledgeBase = {
             experience: {
                 keywords: ['experience', 'work', 'job', 'career'],
-                response: `I have experience in AI education and data analysis:
+                response: `I have diverse experience in AI, data analysis, and healthcare technology:
 
 🤖 <strong>AI Educational Platform Developer</strong> at RMIT University (Feb 2025 - Oct 2025)
-• Developed SocratesCode AI tutor
-• Applied cognitive load theory with AI
-• Created adaptive learning scenarios
+• Developed SocratesCode AI tutor using cognitive load theory
+• Created adaptive learning scenarios with generative AI
+• Applied Socratic methodology for personalized programming education
 
 📊 <strong>Data Analysis Intern</strong> at VietA Bank (Mar 2024 - Jul 2024)
 • Built data warehouse infrastructure
 • Designed customer prediction system
-• Created data visualizations
+• Created data visualizations and reports
 
 👨‍🏫 <strong>Part-Time Teacher</strong> at TEKY (Aug 2023 - Oct 2023)
-• Taught Python programming
-• Developed teaching skills`
+• Taught Python programming courses
+• Developed teaching materials and mentored students`
             },
             skills: {
-                keywords: ['skills', 'technical', 'programming'],
-                response: `My technical skills include:
+                keywords: ['skills', 'technical', 'programming', 'languages'],
+                response: `My technical skills span multiple domains:
 
-💻 <strong>Languages:</strong> Python, JavaScript, Java, SQL
-📊 <strong>Data:</strong> Data Analysis, ML, Business Intelligence
-🛠️ <strong>Tools:</strong> React, Node.js, Power BI, Tableau, Git
-🗄️ <strong>Databases:</strong> MySQL, MongoDB, PostgreSQL
-🌐 <strong>Languages:</strong> Vietnamese, English (IELTS 7.0), Japanese (N5)`
+💻 <strong>Programming:</strong> Python, JavaScript, Java, SQL, HTML/CSS
+📊 <strong>Data & Analytics:</strong> Data Analysis, Machine Learning, Business Intelligence, Statistical Analysis
+🛠️ <strong>Tools:</strong> React, Node.js, Power BI, Tableau, Git, Docker
+🗄️ <strong>Databases:</strong> MySQL, MongoDB, PostgreSQL, Data Warehouse
+🌐 <strong>Languages:</strong> Vietnamese (Native), English (IELTS 7.0), Japanese (N5)
+💼 <strong>Business:</strong> Business Analysis, Strategic Analysis, Healthcare Analytics`
             },
             projects: {
-                keywords: ['project', 'portfolio', 'socratescode'],
-                response: `My featured project:
+                keywords: ['project', 'portfolio', 'socratescode', 'work'],
+                response: `My portfolio includes diverse projects:
 
 🧠 <strong>SocratesCode</strong> - AI Educational Platform
-• AI-powered programming tutor
-• Uses Socratic methodology
-• Adaptive learning based on proficiency
-• Integrated cognitive load theory
-• Academic project at RMIT University
+• AI-powered programming tutor using Socratic methodology
+• Adaptive learning based on cognitive load theory
 
-More projects coming soon!`
+🤖 <strong>Machine Learning</strong> - ML algorithms for classification and prediction
+
+📊 <strong>Practical Data Science</strong> - Data exploration, statistical modeling with Python
+
+📈 <strong>Business Statistics MBA</strong> - Strategic analysis and healthcare analytics
+
+🏥 <strong>Introduction to US Healthcare MBA</strong> - Digital health technologies and policy analysis
+
+☁️ <strong>Cloud Foundation</strong> - AWS infrastructure and deployment
+
+🎨 <strong>User Centered Design</strong> - UX/UI and usability analysis
+
+View all projects at: https://4uroral1g.github.io/portfolio.html`
+            },
+            education: {
+                keywords: ['education', 'school', 'university', 'degree', 'mba'],
+                response: `My educational background:
+
+🎓 <strong>MCPHS University</strong> (Aug 2025 - Present)
+• MBA in Healthcare Technology
+• Boston, MA, USA
+
+🎓 <strong>RMIT University Vietnam</strong> (Jan 2022 - Sept 2025)
+• Bachelor of Information Technology
+• Ho Chi Minh City, Vietnam
+• Graduated with focus on AI and Data Analytics`
             },
             contact: {
-                keywords: ['contact', 'email', 'phone', 'reach'],
-                response: `📧 <strong>Get in touch:</strong>
+                keywords: ['contact', 'email', 'phone', 'reach', 'hire', 'website'],
+                response: `📧 <strong>Get in touch with me:</strong>
 
 Email: minhthienan.v@gmail.com
 Phone (VN): +84 963 899 952
 Phone (US): +1 (857) 222-4505
 GitHub: github.com/4uroraL1g
+Website: https://4uroral1g.github.io
 
-I'm currently seeking opportunities in Data Analysis and Healthcare Technology!`
+📍 <strong>Locations:</strong>
+Ho Chi Minh City, Vietnam | Boston, MA, USA
+
+I'm actively seeking opportunities in Data Analysis, Business Analysis, and Healthcare Technology!`
             },
             default: {
                 response: `I can tell you about:
-• Work experience
-• Technical skills
-• Projects (like SocratesCode)
-• How to contact me
+• 💼 Work experience (AI, Data Analysis, Teaching)
+• 💻 Technical skills and tools
+• 📂 Projects (AI, Data Science, Healthcare, Cloud, UX/UI)
+• 🎓 Education (MBA in Healthcare Technology, IT degree)
+• 📧 How to contact me
 
 What would you like to know?`
             }
