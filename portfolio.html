@@ -17,157 +17,296 @@
             text-align: center;
         }
         
-        /* Chatbot Styles */
-        .chatbot-container {
-            max-width: 900px;
-            margin: 0 auto;
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .project-card {
             background: white;
             border-radius: 16px;
+            overflow: hidden;
             box-shadow: var(--shadow-lg);
+            transition: transform 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+        
+        .project-content {
+            padding: 2rem;
+        }
+        
+        .project-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .project-tag {
+            background: var(--bg-alt);
+            padding: 0.3rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: var(--text-color);
+        }
+        
+        .project-description {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .project-link {
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .project-link.primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+        
+        .project-link.secondary {
+            background: var(--bg-alt);
+            color: var(--primary-color);
+        }
+        
+        .project-link:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+        
+        /* Floating Chatbot Styles */
+        .chatbot-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+        
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        .chatbot-window {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 380px;
+            height: 600px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            display: none;
+            flex-direction: column;
+            z-index: 999;
             overflow: hidden;
         }
+        
+        .chatbot-window.active {
+            display: flex;
+            animation: slideUp 0.3s ease;
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
         .chatbot-header {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
-            padding: 1.5rem;
+            padding: 1rem;
             display: flex;
             align-items: center;
-            gap: 1rem;
+            justify-content: space-between;
         }
-        .chatbot-header i {
+        
+        .chatbot-header-left {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .chatbot-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .chatbot-close {
+            background: none;
+            border: none;
+            color: white;
             font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
         }
+        
         .chat-messages {
-            height: 500px;
+            flex: 1;
             overflow-y: auto;
-            padding: 2rem;
+            padding: 1rem;
             background: var(--bg-alt);
         }
+        
         .message {
             display: flex;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             animation: fadeIn 0.3s ease;
         }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
         .message.user {
             justify-content: flex-end;
         }
+        
         .message-content {
-            max-width: 70%;
-            padding: 1rem 1.5rem;
+            max-width: 75%;
+            padding: 0.8rem 1rem;
             border-radius: 12px;
-            position: relative;
         }
+        
         .message.bot .message-content {
             background: white;
             box-shadow: var(--shadow);
         }
+        
         .message.user .message-content {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: white;
         }
-        .message-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 1rem;
-            font-size: 1.2rem;
-        }
-        .message.bot .message-avatar {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-        }
-        .message.user .message-avatar {
-            background: var(--bg-alt);
-            color: var(--primary-color);
-        }
-        .chat-input-container {
-            padding: 1.5rem;
+        
+        .quick-questions {
+            padding: 0.8rem;
             background: white;
             border-top: 1px solid var(--border-color);
-            display: flex;
-            gap: 1rem;
-        }
-        .chat-input {
-            flex: 1;
-            padding: 1rem;
-            border: 2px solid var(--border-color);
-            border-radius: 24px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-        .chat-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-        .send-btn {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 24px;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            font-size: 1rem;
-        }
-        .send-btn:hover {
-            transform: scale(1.05);
-        }
-        .send-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        .quick-questions {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            padding: 1rem;
-            background: white;
-            border-top: 1px solid var(--border-color);
+            gap: 0.4rem;
         }
+        
         .quick-question-btn {
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             background: var(--bg-alt);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
+            border-radius: 16px;
             cursor: pointer;
+            font-size: 0.8rem;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
         }
+        
         .quick-question-btn:hover {
             background: var(--primary-color);
             color: white;
             border-color: var(--primary-color);
         }
-        .typing-indicator {
-            display: none;
+        
+        .chat-input-container {
             padding: 1rem;
+            background: white;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            gap: 0.5rem;
         }
-        .typing-indicator.active {
-            display: block;
+        
+        .chat-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            font-size: 0.9rem;
         }
-        .typing-dots {
-            display: inline-flex;
-            gap: 4px;
+        
+        .chat-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
         }
-        .typing-dots span {
-            width: 8px;
-            height: 8px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            animation: typing 1.4s infinite;
+        
+        .send-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
         }
-        .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes typing {
-            0%, 60%, 100% { transform: translateY(0); }
-            30% { transform: translateY(-10px); }
+        
+        .send-btn:disabled {
+            opacity: 0.5;
+        }
+        
+        @media (max-width: 768px) {
+            .chatbot-window {
+                width: calc(100% - 20px);
+                right: 10px;
+                bottom: 90px;
+                height: 500px;
+            }
         }
     </style>
 </head>
@@ -178,18 +317,8 @@
             <div class="nav-brand">Thien An</div>
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
-                <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropbtn">Main <i class="fas fa-chevron-down"></i></a>
-                    <div class="dropdown-content">
-                        <a href="index.html#about"><i class="fas fa-user"></i> About</a>
-                        <a href="index.html#experience"><i class="fas fa-briefcase"></i> Experience</a>
-                        <a href="index.html#education"><i class="fas fa-graduation-cap"></i> Education</a>
-                        <a href="index.html#skills"><i class="fas fa-code"></i> Skills</a>
-                        <a href="index.html#contact"><i class="fas fa-envelope"></i> Contact</a>
-                    </div>
-                </li>
-                <li><a href="hobby.html">Hobby</a></li>
                 <li><a href="portfolio.html" style="color: var(--primary-color);">Portfolio</a></li>
+                <li><a href="hobby.html">Hobby</a></li>
             </ul>
             <div class="hamburger">
                 <span></span>
@@ -197,71 +326,256 @@
                 <span></span>
             </div>
         </div>
+        <!-- Scrolling Ticker -->
+        <div class="ticker-wrap">
+            <div class="ticker">
+                <a href="index.html#about" class="ticker-item"><i class="fas fa-user"></i> About</a>
+                <a href="index.html#experience" class="ticker-item"><i class="fas fa-briefcase"></i> Experience</a>
+                <a href="index.html#education" class="ticker-item"><i class="fas fa-graduation-cap"></i> Education</a>
+                <a href="index.html#skills" class="ticker-item"><i class="fas fa-code"></i> Skills</a>
+                <a href="index.html#contact" class="ticker-item"><i class="fas fa-envelope"></i> Contact</a>
+                <!-- Duplicate for seamless loop -->
+                <a href="index.html#about" class="ticker-item"><i class="fas fa-user"></i> About</a>
+                <a href="index.html#experience" class="ticker-item"><i class="fas fa-briefcase"></i> Experience</a>
+                <a href="index.html#education" class="ticker-item"><i class="fas fa-graduation-cap"></i> Education</a>
+                <a href="index.html#skills" class="ticker-item"><i class="fas fa-code"></i> Skills</a>
+                <a href="index.html#contact" class="ticker-item"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+        </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="portfolio-hero">
         <div class="container">
-            <h1 class="hero-title">AI Portfolio <span class="highlight">Assistant</span></h1>
-            <p class="hero-description">Ask me anything about my experience, skills, and projects!</p>
+            <h1 class="hero-title">My <span class="highlight">Projects</span></h1>
+            <p class="hero-description">A showcase of my work in AI, data analytics, and web development</p>
         </div>
     </section>
 
-    <!-- Chatbot Section -->
+    <!-- Projects Section -->
     <section style="padding: 80px 0;">
         <div class="container">
-            <div class="chatbot-container">
-                <div class="chatbot-header">
-                    <i class="fas fa-robot"></i>
-                    <div>
-                        <h3>Portfolio AI Assistant</h3>
-                        <p style="font-size: 0.9rem; opacity: 0.9;">Ask about Thien An's experience, skills, and projects</p>
+            <h2 class="section-title">Featured Projects</h2>
+            
+            <div class="projects-grid">
+                <!-- SocratesCode Project -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-brain"></i>
                     </div>
-                </div>
-
-                <div class="chat-messages" id="chatMessages">
-                    <div class="message bot">
-                        <div class="message-avatar"><i class="fas fa-robot"></i></div>
-                        <div class="message-content">
-                            <p>👋 Hello! I'm Thien An's AI assistant. I can help you learn about:</p>
-                            <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
-                                <li>Work experience and achievements</li>
-                                <li>Technical skills and expertise</li>
-                                <li>Education and certifications</li>
-                                <li>Projects and portfolio</li>
-                            </ul>
-                            <p style="margin-top: 0.5rem;">What would you like to know?</p>
+                    <div class="project-content">
+                        <h3>SocratesCode</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">AI/ML</span>
+                            <span class="project-tag">Education</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">OpenAI</span>
+                        </div>
+                        <p class="project-description">
+                            An AI-powered educational platform that uses Socratic methodology and cognitive load theory to provide personalized programming tutoring.
+                        </p>
+                        <div class="project-links">
+                            <a href="portfolio/socrates-code.html" class="project-link primary">
+                                <i class="fas fa-arrow-right"></i> View Details
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <div class="quick-questions">
-                    <button class="quick-question-btn" onclick="askQuestion('What is your experience?')">
-                        <i class="fas fa-briefcase"></i> Experience
-                    </button>
-                    <button class="quick-question-btn" onclick="askQuestion('What are your skills?')">
-                        <i class="fas fa-code"></i> Skills
-                    </button>
-                    <button class="quick-question-btn" onclick="askQuestion('Tell me about your education')">
-                        <i class="fas fa-graduation-cap"></i> Education
-                    </button>
-                    <button class="quick-question-btn" onclick="askQuestion('What projects have you worked on?')">
-                        <i class="fas fa-project-diagram"></i> Projects
-                    </button>
-                    <button class="quick-question-btn" onclick="askQuestion('How can I contact you?')">
-                        <i class="fas fa-envelope"></i> Contact
-                    </button>
+                <!-- Machine Learning Project -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Machine Learning</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">Machine Learning</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Data Analysis</span>
+                        </div>
+                        <p class="project-description">
+                            Comprehensive machine learning project implementing various algorithms and techniques for data classification and prediction.
+                        </p>
+                        <div class="project-links">
+                            <a href="portfolio/machine-learning.html" class="project-link primary">
+                                <i class="fas fa-arrow-right"></i> View Details
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="chat-input-container">
-                    <input type="text" class="chat-input" id="chatInput" placeholder="Ask me anything..." onkeypress="handleKeyPress(event)">
-                    <button class="send-btn" id="sendBtn" onclick="sendMessage()">
-                        <i class="fas fa-paper-plane"></i> Send
-                    </button>
+                <!-- Data Science Project 1 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Data Science Project 1</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">Data Science</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Jupyter</span>
+                            <span class="project-tag">Analytics</span>
+                        </div>
+                        <p class="project-description">
+                            Practical data science project involving data exploration, cleaning, and analysis using Python and Jupyter notebooks.
+                        </p>
+                        <div class="project-links">
+                            <a href="portfolio/data-science-1.html" class="project-link primary">
+                                <i class="fas fa-arrow-right"></i> View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Science Project 2 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Data Science Project 2</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">Data Science</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Analytics</span>
+                            <span class="project-tag">Visualization</span>
+                        </div>
+                        <p class="project-description">
+                            Advanced data science project focusing on practical data analysis techniques, statistical modeling, and data-driven insights.
+                        </p>
+                        <div class="project-links">
+                            <a href="portfolio/data-science-2.html" class="project-link primary">
+                                <i class="fas fa-arrow-right"></i> View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Information System Statistics -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Information System Statistics</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">Statistics</span>
+                            <span class="project-tag">Information Systems</span>
+                            <span class="project-tag">Data Analysis</span>
+                        </div>
+                        <p class="project-description">
+                            Statistical analysis projects for information systems, applying statistical methods to solve business problems and make data-driven decisions.
+                        </p>
+                        <div class="project-links">
+                            <a href="portfolio/information-system-statistics.html" class="project-link primary">
+                                <i class="fas fa-arrow-right"></i> View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cloud Foundation -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>Cloud Foundation</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">Cloud Computing</span>
+                            <span class="project-tag">AWS</span>
+                            <span class="project-tag">Infrastructure</span>
+                        </div>
+                        <p class="project-description">
+                            Cloud computing project exploring foundational concepts of cloud infrastructure, deployment, and management.
+                        </p>
+                        <div class="project-links">
+                            <a href="portfolio/cloud-foundation.html" class="project-link primary">
+                                <i class="fas fa-arrow-right"></i> View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Centered Design -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="project-content">
+                        <h3>User Centered Design</h3>
+                        <div class="project-tags">
+                            <span class="project-tag">UX/UI</span>
+                            <span class="project-tag">Design</span>
+                            <span class="project-tag">User Research</span>
+                        </div>
+                        <p class="project-description">
+                            User-centered design projects focusing on analyzing existing websites and creating user-friendly interfaces.
+                        </p>
+                        <div class="project-links">
+                            <a href="portfolio/user-centered-design.html" class="project-link primary">
+                                <i class="fas fa-arrow-right"></i> View Details
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Floating Chatbot -->
+    <button class="chatbot-toggle" id="chatbotToggle" onclick="toggleChat()">
+        <i class="fas fa-comment-dots"></i>
+    </button>
+
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <div class="chatbot-header-left">
+                <div class="chatbot-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div>
+                    <strong>AI Assistant</strong>
+                    <div style="font-size: 0.8rem; opacity: 0.9;">Ask about my work</div>
+                </div>
+            </div>
+            <button class="chatbot-close" onclick="toggleChat()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                <div class="message-content">
+                    <p>👋 Hi! I'm Thien An's AI assistant. Ask me about experience, skills, education, or projects!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="quick-questions">
+            <button class="quick-question-btn" onclick="askQuestion('Experience')">
+                <i class="fas fa-briefcase"></i> Experience
+            </button>
+            <button class="quick-question-btn" onclick="askQuestion('Skills')">
+                <i class="fas fa-code"></i> Skills
+            </button>
+            <button class="quick-question-btn" onclick="askQuestion('Projects')">
+                <i class="fas fa-project-diagram"></i> Projects
+            </button>
+            <button class="quick-question-btn" onclick="askQuestion('Contact')">
+                <i class="fas fa-envelope"></i> Contact
+            </button>
+        </div>
+
+        <div class="chat-input-container">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
+            <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -273,135 +587,74 @@
 
     <script src="script.js"></script>
     <script>
+        // Chatbot Toggle
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatbotWindow');
+            chatWindow.classList.toggle('active');
+        }
+
         // Knowledge Base
         const knowledgeBase = {
             experience: {
-                keywords: ['experience', 'work', 'job', 'career', 'employment', 'worked'],
-                response: `I have valuable experience in healthcare technology and data analysis:
+                keywords: ['experience', 'work', 'job', 'career'],
+                response: `I have experience in AI education and data analysis:
 
-📊 <strong>Data Analyst at Dedalus Vietnam</strong> (Nov 2024 - Present)
-• Optimizing product queries and database performance
-• Analyzing healthcare data for actionable insights
-• Managing and maintaining the company's SQL database
+🤖 <strong>AI Educational Platform Developer</strong> at RMIT University (Feb 2025 - Oct 2025)
+• Developed SocratesCode AI tutor
+• Applied cognitive load theory with AI
+• Created adaptive learning scenarios
 
-🏥 <strong>Healthcare Technology Analyst at Abbott</strong> (Jan 2022 - Aug 2024)
-• Analyzed extensive data sets to improve patient outcomes
-• Developed automated reporting systems
-• Collaborated with cross-functional teams on healthcare solutions
+📊 <strong>Data Analysis Intern</strong> at VietA Bank (Mar 2024 - Jul 2024)
+• Built data warehouse infrastructure
+• Designed customer prediction system
+• Created data visualizations
 
-Each role has strengthened my analytical skills and deepened my understanding of healthcare technology.`
+👨‍🏫 <strong>Part-Time Teacher</strong> at TEKY (Aug 2023 - Oct 2023)
+• Taught Python programming
+• Developed teaching skills`
             },
             skills: {
-                keywords: ['skills', 'technical', 'programming', 'languages', 'tools', 'technology', 'can you'],
-                response: `I have a diverse technical skill set:
+                keywords: ['skills', 'technical', 'programming'],
+                response: `My technical skills include:
 
-💻 <strong>Programming Languages:</strong>
-• Python, SQL, R, JavaScript, VBA
-
-📊 <strong>Data Analysis & Visualization:</strong>
-• Power BI, Tableau, Excel (Advanced)
-• Statistical analysis and data modeling
-
-🗄️ <strong>Databases:</strong>
-• SQL Server, PostgreSQL, MySQL
-• Database optimization and management
-
-☁️ <strong>Cloud & Tools:</strong>
-• Git, Azure, AWS basics
-• Jira, Confluence
-
-I'm always learning and expanding my technical capabilities!`
-            },
-            education: {
-                keywords: ['education', 'degree', 'university', 'study', 'studied', 'school', 'academic'],
-                response: `🎓 <strong>Educational Background:</strong>
-
-<strong>Bachelor of Business (BBus) in Business Analytics</strong>
-RMIT University, Vietnam (2020 - 2024)
-• GPA: 3.4/4.0
-• Focused on data analytics, statistical modeling, and business intelligence
-
-<strong>High School Diploma</strong>
-Le Quy Don High School for the Gifted (2017 - 2020)
-
-I'm committed to continuous learning and staying updated with the latest industry trends and technologies.`
+💻 <strong>Languages:</strong> Python, JavaScript, Java, SQL
+📊 <strong>Data:</strong> Data Analysis, ML, Business Intelligence
+🛠️ <strong>Tools:</strong> React, Node.js, Power BI, Tableau, Git
+🗄️ <strong>Databases:</strong> MySQL, MongoDB, PostgreSQL
+🌐 <strong>Languages:</strong> Vietnamese, English (IELTS 7.0), Japanese (N5)`
             },
             projects: {
-                keywords: ['project', 'portfolio', 'built', 'created', 'developed', 'work on'],
-                response: `🚀 <strong>Key Projects:</strong>
+                keywords: ['project', 'portfolio', 'socratescode'],
+                response: `My featured project:
 
-<strong>Healthcare Data Analytics Platform</strong>
-• Built automated reporting system reducing manual work by 60%
-• Implemented predictive models for patient outcome analysis
-• Tools: Python, SQL, Power BI
+🧠 <strong>SocratesCode</strong> - AI Educational Platform
+• AI-powered programming tutor
+• Uses Socratic methodology
+• Adaptive learning based on proficiency
+• Integrated cognitive load theory
+• Academic project at RMIT University
 
-<strong>Database Optimization Initiative</strong>
-• Improved query performance by 40%
-• Streamlined data workflows for better efficiency
-• Tools: SQL Server, Performance Tuning
-
-<strong>Personal Portfolio Website</strong>
-• Responsive design with modern UI/UX
-• Interactive AI chatbot (you're using it now!)
-• Technologies: HTML, CSS, JavaScript
-
-I'm always working on new projects to enhance my skills!`
+More projects coming soon!`
             },
             contact: {
-                keywords: ['contact', 'reach', 'email', 'phone', 'connect', 'linkedin', 'github'],
-                response: `📧 <strong>Let's Connect!</strong>
+                keywords: ['contact', 'email', 'phone', 'reach'],
+                response: `📧 <strong>Get in touch:</strong>
 
-<strong>Email:</strong> minhthienan.vo2002@gmail.com
-<strong>Phone:</strong> +84 397 507 555
-<strong>LinkedIn:</strong> linkedin.com/in/vo-minh-thien-an-88a917200
-<strong>GitHub:</strong> github.com/4uroraL1g
+Email: minhthienan.v@gmail.com
+Phone (VN): +84 963 899 952
+Phone (US): +1 (857) 222-4505
+GitHub: github.com/4uroraL1g
 
-I'm always open to discussing new opportunities, collaborations, or just connecting with fellow professionals. Feel free to reach out!`
-            },
-            hobbies: {
-                keywords: ['hobby', 'hobbies', 'interest', 'free time', 'trekking', 'hiking', 'diving', 'travel'],
-                response: `🏔️ <strong>Adventures & Hobbies:</strong>
-
-I'm passionate about outdoor activities:
-
-<strong>Trekking:</strong> Love multi-day expeditions through challenging terrains (500+ km trekked!)
-<strong>Hiking:</strong> Weekend warrior exploring local trails and mountains
-<strong>Diving:</strong> Exploring underwater worlds and marine life (20+ dives)
-
-These adventures teach me resilience, planning, and appreciation for nature - skills that translate well into my professional life!
-
-Check out my <a href="hobby.html" style="color: var(--primary-color);">Hobby page</a> for more details!`
-            },
-            about: {
-                keywords: ['about', 'who are you', 'tell me about yourself', 'yourself', 'background'],
-                response: `👋 <strong>About Me:</strong>
-
-I'm Vo Minh Thien An, a passionate Data Analyst with a focus on healthcare technology. I combine technical expertise with business acumen to deliver data-driven solutions.
-
-<strong>Professional Focus:</strong>
-• Healthcare data analytics
-• Database optimization
-• Business intelligence
-• Process automation
-
-<strong>Personal Interests:</strong>
-• Outdoor adventures (trekking, hiking, diving)
-• Continuous learning
-• Technology innovation
-
-I believe in using data to make meaningful impacts, especially in healthcare where insights can improve patient outcomes and operational efficiency.`
+I'm currently seeking opportunities in Data Analysis and Healthcare Technology!`
             },
             default: {
-                response: `I'm not sure about that specific question, but I'd be happy to tell you about:
-
-• My work experience and achievements
-• Technical skills and expertise  
-• Educational background
-• Projects I've worked on
+                response: `I can tell you about:
+• Work experience
+• Technical skills
+• Projects (like SocratesCode)
 • How to contact me
-• My hobbies and interests
 
-What would you like to know more about?`
+What would you like to know?`
             }
         };
 
@@ -410,22 +663,11 @@ What would you like to know more about?`
             const messageDiv = document.createElement('div');
             messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
             
-            const avatar = document.createElement('div');
-            avatar.className = 'message-avatar';
-            avatar.innerHTML = `<i class="fas fa-${isUser ? 'user' : 'robot'}"></i>`;
-            
             const contentDiv = document.createElement('div');
             contentDiv.className = 'message-content';
             contentDiv.innerHTML = `<p>${content}</p>`;
             
-            if (isUser) {
-                messageDiv.appendChild(contentDiv);
-                messageDiv.appendChild(avatar);
-            } else {
-                messageDiv.appendChild(avatar);
-                messageDiv.appendChild(contentDiv);
-            }
-            
+            messageDiv.appendChild(contentDiv);
             messagesContainer.appendChild(messageDiv);
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
@@ -448,11 +690,9 @@ What would you like to know more about?`
             
             if (!message) return;
             
-            // Add user message
             addMessage(message, true);
             input.value = '';
             
-            // Simulate typing delay
             const sendBtn = document.getElementById('sendBtn');
             sendBtn.disabled = true;
             
@@ -460,7 +700,7 @@ What would you like to know more about?`
                 const response = getBotResponse(message);
                 addMessage(response, false);
                 sendBtn.disabled = false;
-            }, 800);
+            }, 600);
         }
 
         function askQuestion(question) {

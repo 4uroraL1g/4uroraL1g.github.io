@@ -71,9 +71,45 @@ body {
     color: var(--primary-color);
 }
 
+/* Scrolling Ticker Styles */
+.ticker-wrap {
+    width: 100%;
+    overflow: hidden;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    padding: 0.8rem 0;
+}
+
+.ticker {
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.ticker-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0 2rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.ticker-item:hover {
+    color: #fbbf24;
+    transform: scale(1.05);
+}
+
+.ticker-item i {
+    font-size: 1rem;
+}
+
 /* Dropdown Menu Styles */
 .dropdown {
     position: relative;
+    display: none;
 }
 
 .dropbtn {
